@@ -1,4 +1,5 @@
 from pokemon import pokemon
+from functions import find_opponent, attack
 import random
 import time
 commands = "x to attack\ns to smokescreen\nr to run"
@@ -26,8 +27,7 @@ battle = random.randint(0,1)
 enemies = [["big bad tadas",100,60,80,"grass"],["Random man",100, 80, 60,"water"]]
 
 
-opponent_pokemon = pokemon(enemies[battle][0],enemies[battle][1],enemies[battle][2],enemies[battle][3],enemies[battle][4])
-print("\n%s type %s wants to battle! \n" %(enemies[battle][0],enemies[battle][4]))
+opponent_pokemon = ()
  
 battle_option = input("R to run or F to fight! ")
 if battle_option.lower() == "r":
@@ -43,16 +43,9 @@ else:
 
         if cmd.lower() == "x":
             smoke = 0
-            damage = your_pokemon.calculate_damage(getattr(your_pokemon,"type_"),getattr(opponent_pokemon,"type_"),random.randint(1,50),random.randint(1,50))
-            print("\ndamage %.2f \n " %(damage))
-            setattr(opponent_pokemon,"hp",getattr(opponent_pokemon,"hp") - damage)
-            if getattr(opponent_pokemon,"hp") <= 0:
-                print("you killed ", opponent_pokemon.name,"\n")
-                xp += 1
-                print("you gained 1 XP!\nyour XP is now %s"%(xp))
-                break
-            else:
-                print("opponents hp: %.2f " %(getattr(opponent_pokemon,"hp")),"\n")    
+            attack(your_pokemon, opponent_pokemon,xp)
+            
+    
         elif cmd.lower() == "s":
             smoke = random.randint(0,4)                       
             if smoke > 2:

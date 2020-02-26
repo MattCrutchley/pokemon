@@ -9,16 +9,19 @@ def find_opponent():
     return opponent_pokemon
 
 
-def attack(your_pokemon, opponent_pokemon):
+def attack(your_pokemon, opponent_pokemon,xp):
     damage = your_pokemon.calculate_damage(getattr(your_pokemon,"type_"),getattr(opponent_pokemon,"type_"),random.randint(1,50),random.randint(1,50))
     print("\ndamage %.2f \n " %(damage))
     setattr(opponent_pokemon,"hp",getattr(opponent_pokemon,"hp") - damage)
+    
     if getattr(opponent_pokemon,"hp") <= 0:
         print("you killed ", opponent_pokemon.name,"\n")
         xp += 1
         print("you gained 1 XP!\nyour XP is now %s"%(xp))
+        break 
+    else:
+        print("opponents hp: %.2f " %(getattr(opponent_pokemon,"hp")),"\n")
         
-
 def smokescreen(opponent_pokemon):
     smoke = random.randint(0,4)                       
     if smoke > 2:
