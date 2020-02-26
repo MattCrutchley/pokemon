@@ -5,16 +5,20 @@ commands = "x to attack\ns to smokescreen\nr to run"
 starter_choices = [["big bad bob", 100,60,80,"water"],["wheres my whey jay",100,80,60,"fire"]]
 spec = ["HP","Attack","Defence","Type"]
 smoke = 0
+choice = ""
 xp = 0
 
-choice = input("choose your wepon\n %s \n %s \n %s \n or \n %s \n %s \n %s \n\n" %(starter_choices[0][0],spec, starter_choices[0][1:],starter_choices[1][0], spec,starter_choices[0][1:]))
+while choice !="big bad bob" or "wheres my whey jay":
+    choice = input("choose your wepon\n %s \n %s \n %s \n or \n %s \n %s \n %s \n\n" %(starter_choices[0][0],spec, starter_choices[0][1:],starter_choices[1][0], spec,starter_choices[0][1:]))
 
-if choice == "big bad bob":
-    your_pokemon = pokemon(choice,100, 60, 80, "water")   
-elif choice == "wheres my whey jay":
-    your_pokemon = pokemon(choice,100, 80, 60,"fire")
-else:
-    print("choice not recognised")
+    if choice == "big bad bob":
+        your_pokemon = pokemon(choice,100, 60, 80, "water")
+        break   
+    elif choice == "wheres my whey jay":
+        your_pokemon = pokemon(choice,100, 80, 60,"fire")
+        break
+    else:
+        print("\nchoice not recognised\n")
 
 
 
@@ -54,7 +58,7 @@ else:
             if smoke > 2:
                 print("\n%s is paralysed" %(getattr(opponent_pokemon,"name")))
             else:
-                print("\n%s is paralysed" %(getattr(opponent_pokemon,"name")))   
+                print("\n%s evaded your attack" %(getattr(opponent_pokemon,"name")))   
        
         elif cmd.lower() == "r":
             print("you ran away")
