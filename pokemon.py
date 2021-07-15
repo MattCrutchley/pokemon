@@ -27,7 +27,7 @@ class pokemon:
 class player(pokemon):
     def __init__(self,name,hp,attack,defence,type_,inventory,xp):
         super().__init__(name,hp,attack,defence,type_)
-        self.inventory = inventory = {"wood": 0, "rope": 0, "vines":1,"bow":0}
+        self.inventory = inventory = {"wood": 0, "rope": 0, "vines":1,"bow":0,"stone":0}
         self.xp = 0
 
 
