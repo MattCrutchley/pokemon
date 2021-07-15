@@ -5,7 +5,7 @@ import time
 def battle(your_pokemon):
     commands = "x to attack\ns to smokescreen\nr to run"
     battle = random.randint(0,1)
-    enemies = [["big bad tadas",100,60,80,"melee"],["Random man",100, 80, 60,"melee"]]
+    enemies = [["swamp lizard",100,60,80,"melee"],["giant spider",100, 80, 60,"melee"]]
 
 
     opponent_pokemon = pokemon(enemies[battle][0],enemies[battle][1],enemies[battle][2],enemies[battle][3],enemies[battle][4])

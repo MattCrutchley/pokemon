@@ -19,7 +19,9 @@ def room2(your_pokemon):
                     else:
                         your_pokemon.hp = your_pokemon.hp - damage
                         print("you lost %s hp" %(damage))
-
+                        if your_pokemon.hp <= 0:
+                            print("you fell and died")
+                            break
         elif cmd.lower() == "r":
             print("returning home")
         elif cmd.lower() == "i":
