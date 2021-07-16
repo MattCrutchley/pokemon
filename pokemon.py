@@ -6,7 +6,7 @@ class pokemon:
         self.defence = defence
         self.type_ = type_
 
-    def calculate_damage(self,your_type, opponent_type, attack, defense):
+    def calculate_damage(self,your_type, opponent_type, attack, defense, xp):
         effectivness = 0
     
         dicts = [{"mage":{"melee":2,"range":0.5,"mage":1}},
@@ -22,13 +22,14 @@ class pokemon:
                         effectivness = item[your_type][opponent_type]      
        
 
-        return 50 * (attack / defense) * effectivness   
+        return 50 * (attack / defense) * effectivness + xp
 
 class player(pokemon):
-    def __init__(self,name,hp,attack,defence,type_,inventory,xp):
+    def __init__(self,name,hp,attack,defence,type_,inventory,xp,equipped):
         super().__init__(name,hp,attack,defence,type_)
-        self.inventory = inventory = {"wood": 0, "rope": 0, "vines":1,"bow":0,"stone":0}
+        self.inventory = inventory = {"wood": 0, "rope": 0, "vines":10,"bow":0,"stone":0,"arrow":0,"fruit":0,"wooden sword":0}
         self.xp = 0
+        self.equipped = "none"
 
 
 #def defence(self,defence_type,attack_type):

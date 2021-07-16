@@ -3,7 +3,8 @@ import random
 import time
 
 def battle(your_pokemon):
-    commands = "x to attack\ns to smokescreen\nr to run"
+    smoke = 0
+    commands = "x to attack\ns to smokescreen\nr to run\n e to eat"
     battle = random.randint(0,1)
     enemies = [["swamp lizard",100,60,80,"melee"],["giant spider",100, 80, 60,"melee"]]
 
@@ -25,7 +26,7 @@ def battle(your_pokemon):
 
             if cmd.lower() == "x":
                 smoke = 0
-                damage = your_pokemon.calculate_damage(getattr(your_pokemon,"type_"),getattr(opponent_pokemon,"type_"),random.randint(1,50),random.randint(1,50))
+                damage = your_pokemon.calculate_damage(getattr(your_pokemon,"type_"),getattr(opponent_pokemon,"type_"),random.randint(1,50),random.randint(1,50),your_pokemon.xp)
                 print("\ndamage %.2f \n " %(damage))
                 setattr(opponent_pokemon,"hp",getattr(opponent_pokemon,"hp") - damage)
                 if getattr(opponent_pokemon,"hp") <= 0:
@@ -40,7 +41,14 @@ def battle(your_pokemon):
                 if smoke > 2:
                     print("\n%s is paralysed" %(getattr(opponent_pokemon,"name")))
                 else:
-                    print("\n%s is paralysed" %(getattr(opponent_pokemon,"name")))   
+                    print("\n%s is paralysed" %(getattr(opponent_pokemon,"name"))) 
+
+            elif cmd.lower() == "e":
+                if your_pokemon.inventory["fruit"] > 0:
+                    your_pokemon.inventory["fruit"] = your_pokemon.inventory["fruit"] - 1
+                    hp_increase = random.randint(10,20)
+                    your_pokemon.hp = your_pokemon.hp + hp_increase
+                    print("You eat some fruit and gain %s hp\n" %(hp_increase))  
        
             elif cmd.lower() == "r":
                 print("you ran away")
@@ -54,7 +62,7 @@ def battle(your_pokemon):
                 smoke = 0
                 #opponent attack
 
-                op_damage = opponent_pokemon.calculate_damage(getattr(opponent_pokemon,"type_"),getattr(your_pokemon,"type_"),random.randint(1,50),random.randint(1,50))
+                op_damage = opponent_pokemon.calculate_damage(getattr(opponent_pokemon,"type_"),getattr(your_pokemon,"type_"),random.randint(1,50),random.randint(1,50),0)
 
                 setattr(your_pokemon,"hp",getattr(your_pokemon,"hp") - op_damage)
                 print("you are attacked, you loose %.2f " %(op_damage),"HP!\n")

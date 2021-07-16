@@ -5,7 +5,7 @@ import time
 
 def room1(your_pokemon):
     cmd = ""
-    items=["wood","vines","stone"]
+    items=["wood","vines","stone","fruit"]
     while cmd != "r":
         #commands = "s to search for wood\nr to return home\n"
         print("you enter the woods, what would you like to do?\n")
@@ -30,5 +30,11 @@ def room1(your_pokemon):
             print("returning home\n")
         elif cmd.lower() == "i":
             print(your_pokemon.inventory)
+        elif cmd.lower() == "e":
+            if your_pokemon.inventory["fruit"] > 0:
+                your_pokemon.inventory["fruit"] = your_pokemon.inventory["fruit"] - 1
+                hp_increase = random.randint(10,20)
+                your_pokemon.hp = your_pokemon.hp + hp_increase
+                print("You eat some fruit and gain %s hp\n" %(hp_increase))
         else:
             print("command not recognised")
